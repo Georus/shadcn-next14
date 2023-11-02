@@ -1,7 +1,8 @@
 import React from "react";
+import EmblaCarousel from "./Carousel";
 
 const Homepage = () => {
-  return <nav>Homepage</nav>;
+  return <EmblaCarousel></EmblaCarousel>;
 };
 
 export default Homepage;

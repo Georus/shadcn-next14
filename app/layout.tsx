@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "./Navbar";
+import Navbar from "./Navbar/Navbar";
 import { ThemeProvider } from "@/components/Provider";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -25,7 +25,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <header>
+          <header className="bg-secondary">
             <Navbar />
           </header>
           <main>{children}</main>
