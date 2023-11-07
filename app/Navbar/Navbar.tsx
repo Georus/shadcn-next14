@@ -47,8 +47,8 @@ const Navbar = () => {
     { label: "Industries", href: "/", multilink: true },
     { label: "Blog", href: "/", multilink: true },
     { label: "Careers", href: "/", multilink: true },
-    { label: "Video", href: "/", multilink: true },
-    { label: "Contact", href: "/", multilink: false },
+    { label: "Dashboard", href: "/dashboard", multilink: false },
+    { label: "Contact", href: "/contact", multilink: false },
   ];
 
   return (
@@ -56,7 +56,7 @@ const Navbar = () => {
       <Collapsible
         open={isOpen || isDesktop}
         onOpenChange={setIsOpen}
-        className="relative mx-auto flex flex-wrap items-end justify-between px-4 pt-2 lg:max-w-screen-lg"
+        className="container relative flex flex-wrap items-end justify-between pt-2"
       >
         <div>
           <Image src={logo} alt="logo of page" width={100}></Image>

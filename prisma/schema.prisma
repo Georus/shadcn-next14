@@ -1,0 +1,21 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Candidate {
+  id         Int      @id @default(autoincrement())
+  username   String   @db.VarChar(50)
+  jobdesc    String   @db.VarChar(50)
+  experience String   @db.Text
+  countries  String   @db.VarChar(50)
+  createdAt  DateTime @default(now()) @db.Timestamp(6)
+  updatedAt  DateTime @updatedAt
+}
