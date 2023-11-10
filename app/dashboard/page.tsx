@@ -11,6 +11,7 @@ import delay from "delay";
 
 import React from "react";
 import TableToolbar from "./TableToolbar";
+import Link from "next/link";
 
 const page = async () => {
   const cands = await prisma.candidate.findMany();
@@ -35,12 +36,19 @@ const page = async () => {
           {cands.map((cand) => (
             <TableRow key={cand.id}>
               <TableCell>{cand.id}</TableCell>
-              <TableCell>{cand.username}</TableCell>
+              <TableCell>
+                <Link
+                  className="text-slate-400 underline hover:text-slate-600"
+                  href={`/dashboard/${cand.id}`}
+                >
+                  {cand.username}
+                </Link>
+              </TableCell>
               <TableCell>{cand.jobdesc}</TableCell>
               <TableCell>{cand.experience}</TableCell>
               <TableCell>{cand.countries}</TableCell>
-              <TableCell>{cand.createdAt.toString()}</TableCell>
-              <TableCell>{cand.updatedAt.toString()}</TableCell>
+              <TableCell>{cand.createdAt.toDateString()}</TableCell>
+              <TableCell>{cand.updatedAt.toDateString()}</TableCell>
             </TableRow>
           ))}
         </TableBody>

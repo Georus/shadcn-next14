@@ -16,6 +16,14 @@ model Candidate {
   jobdesc    String   @db.VarChar(50)
   experience String   @db.Text
   countries  String   @db.VarChar(50)
+  hired      Status   @default(considered)
+  comments   String?  @db.Text
   createdAt  DateTime @default(now()) @db.Timestamp(6)
   updatedAt  DateTime @updatedAt
+}
+
+enum Status {
+  hired
+  considered
+  discarded
 }
