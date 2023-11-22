@@ -40,3 +40,13 @@ export async function editCand(
 
   redirect("/");
 }
+
+export async function deleteCand(id: number) {
+  try {
+    prisma.candidate.delete({ where: { id: id } });
+  } catch (error) {
+    console.log(error);
+  }
+
+  redirect("/");
+}

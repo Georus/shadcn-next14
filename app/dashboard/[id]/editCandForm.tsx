@@ -16,6 +16,8 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
 import { editCand } from "@/lib/serverActions";
+import { useState } from "react";
+import { ReloadIcon } from "@radix-ui/react-icons";
 
 export const EditFormSchema = z.object({
   type: z.enum(["hired", "considered", "discarded"], {
@@ -24,18 +26,17 @@ export const EditFormSchema = z.object({
   comments: z.string().min(2),
 });
 
-interface Props {
-  index: number;
-}
+const EditCandForm = ({ index }: { index: number }) => {
+  const [isLoading, setLoading] = useState(false);
 
-export default function EditCandForm({ index }: Props) {
   const form = useForm<z.infer<typeof EditFormSchema>>({
     resolver: zodResolver(EditFormSchema),
   });
 
-  function onSubmit(data: z.infer<typeof EditFormSchema>) {
-    editCand(data, index);
-    console.log(data);
+  async function onSubmit(data: z.infer<typeof EditFormSchema>) {
+    setLoading(true);
+    await editCand(data, index);
+    setLoading(false);
   }
 
   return (
@@ -93,8 +94,13 @@ export default function EditCandForm({ index }: Props) {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit">
+          Submit
+          {isLoading && <ReloadIcon className="ml-2 h-4 w-4 animate-spin" />}
+        </Button>
       </form>
     </Form>
   );
-}
+};
+
+export default EditCandForm;
