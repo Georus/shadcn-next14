@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "./Navbar/Navbar";
 import { ThemeProvider } from "@/components/Provider";
 import Footer from "./Footer";
+import AuthProvider from "./auth/Provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,20 +21,22 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <header className="bg-secondary">
-            <Navbar />
-          </header>
-          <main className="md:container">{children}</main>
-          <footer className="bg-secondary">
-            <Footer />
-          </footer>
-        </ThemeProvider>
+        <AuthProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <header className="bg-secondary">
+              <Navbar />
+            </header>
+            <main className="md:container">{children}</main>
+            <footer className="bg-secondary">
+              <Footer />
+            </footer>
+          </ThemeProvider>
+        </AuthProvider>
       </body>
     </html>
   );

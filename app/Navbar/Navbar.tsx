@@ -15,6 +15,7 @@ import { MagnifyingGlassIcon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 import useMediaQuery from "@/lib/useMediaQuery";
 import clsx from "clsx";
+import { useSession } from "next-auth/react";
 
 const PhoneIcon = () => {
   return (
@@ -39,6 +40,14 @@ const PhoneIcon = () => {
 const Navbar = () => {
   const isDesktop = useMediaQuery("(min-width: 768px)");
   const [isOpen, setIsOpen] = useState(false);
+  const { status, data: session } = useSession();
+  let logLink = "Login";
+  let logRef = "/api/auth/signin";
+
+  if (status === "authenticated") {
+    logLink = "Logout";
+    logRef = "/api/auth/signout";
+  }
 
   const menu = [
     { label: "Home", href: "/", multilink: false },
@@ -46,7 +55,7 @@ const Navbar = () => {
     { label: "Automation", href: "/", multilink: true },
     { label: "Industries", href: "/", multilink: true },
     { label: "Blog", href: "/", multilink: true },
-    { label: "Careers", href: "/", multilink: true },
+    { label: logLink, href: logRef, multilink: false },
     { label: "Dashboard", href: "/dashboard", multilink: false },
     { label: "Contact", href: "/contact", multilink: false },
   ];
