@@ -43,7 +43,7 @@ export async function editCand(
 
 export async function deleteCand(id: number) {
   try {
-    prisma.candidate.delete({ where: { id: id } });
+    await prisma.candidate.delete({ where: { id: id } });
   } catch (error) {
     console.log(error);
   }
