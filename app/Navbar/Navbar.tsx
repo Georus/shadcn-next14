@@ -56,9 +56,15 @@ const Navbar = () => {
     { label: "Industries", href: "/", multilink: true },
     { label: "Blog", href: "/", multilink: true },
     { label: logLink, href: logRef, multilink: false },
-    { label: "Dashboard", href: "/dashboard", multilink: false },
     { label: "Contact", href: "/contact", multilink: false },
   ];
+
+  if (status === "authenticated")
+    menu.push({
+      label: "Dashboard",
+      href: "/dashboard",
+      multilink: false,
+    });
 
   return (
     <nav>

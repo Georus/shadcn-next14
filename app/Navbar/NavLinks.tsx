@@ -29,7 +29,7 @@ const NavLink = ({ trigger, href, content }: Props) => {
 
   if (isDesktop)
     return (
-      <HoverCard>
+      <HoverCard openDelay={400}>
         <HoverCardTrigger asChild>
           <Link
             href={href}

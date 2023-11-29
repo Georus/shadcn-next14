@@ -12,10 +12,12 @@ import delay from "delay";
 import React from "react";
 import TableToolbar from "./TableToolbar";
 import Link from "next/link";
+import { DataTable } from "./DataTable";
 
 const page = async () => {
   const cands = await prisma.candidate.findMany();
-  await delay(2000);
+
+  await delay(1500);
   return (
     <div className="pt-4">
       <TableToolbar />
@@ -53,6 +55,7 @@ const page = async () => {
           ))}
         </TableBody>
       </Table>
+      <DataTable />
     </div>
   );
 };
