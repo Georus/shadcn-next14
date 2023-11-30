@@ -20,14 +20,12 @@ const SingleLink = ({ label, href }: Props) => {
     );
   else
     return (
-      <div className="w-[350] px-4">
-        <Link
-          href={href}
-          className="hover:text-slate-400 text-sm font-semibold"
-        >
-          {label}
-        </Link>
-      </div>
+      <Link
+        href={href}
+        className="block py-1 text-sm font-semibold hover:text-slate-400"
+      >
+        {label}
+      </Link>
     );
 };
 

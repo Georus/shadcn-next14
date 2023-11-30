@@ -4,6 +4,7 @@
   --size-mobile: 100%;
   --slide-height: 19rem;
   padding: 1.6rem;
+  position: relative;
 }
 .embla__viewport {
   overflow: hidden;
@@ -95,7 +96,6 @@
   opacity: 0.3;
 }
 .embla__button__svg {
-  width: 65%;
   height: 65%;
 }
 .embla__dot {

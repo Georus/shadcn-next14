@@ -16,6 +16,7 @@ import { useState } from "react";
 import useMediaQuery from "@/lib/useMediaQuery";
 import clsx from "clsx";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 const PhoneIcon = () => {
   return (
@@ -40,7 +41,8 @@ const PhoneIcon = () => {
 const Navbar = () => {
   const isDesktop = useMediaQuery("(min-width: 768px)");
   const [isOpen, setIsOpen] = useState(false);
-  const { status, data: session } = useSession();
+  const [sessionBypass, setSessionBypass] = useState(false);
+  const { status } = useSession();
   let logLink = "Login";
   let logRef = "/api/auth/signin";
 
@@ -87,21 +89,24 @@ const Navbar = () => {
             <span className="sr-only">Toggle</span>
           </Button>
         </CollapsibleTrigger>
-        <CollapsibleContent>
-          <div className="w-full md:flex md:items-center md:space-x-4">
-            {menu.map((link, i) =>
-              link.multilink ? (
-                <NavLink
-                  key={i}
-                  trigger={link.label}
-                  href={link.href}
-                  content={["Link 1", "Link 2"]}
-                />
-              ) : (
-                <SingleLink key={i} {...link} />
-              ),
-            )}
-          </div>
+        <CollapsibleContent className="w-full md:flex md:w-auto md:items-center md:space-x-4">
+          {menu.map((link, i) =>
+            link.multilink ? (
+              <NavLink
+                key={i}
+                trigger={link.label}
+                href={link.href}
+                content={["Link 1", "Link 2"]}
+              />
+            ) : (
+              <SingleLink key={i} {...link} />
+            ),
+          )}
+          {sessionBypass ? (
+            <Link href="/dashboard">Dashboard</Link>
+          ) : (
+            <Button onClick={() => setSessionBypass(true)}>BypassLogin</Button>
+          )}
         </CollapsibleContent>
 
         <div className="absolute right-1 top-1 flex items-center space-x-8">

@@ -49,12 +49,8 @@ const NavLink = ({ trigger, href, content }: Props) => {
     );
   else
     return (
-      <Collapsible
-        open={isOpen}
-        onOpenChange={setIsOpen}
-        className="w-[350px] space-y-2"
-      >
-        <div className="flex items-center justify-between space-x-4 px-4">
+      <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+        <div className="flex items-center justify-between space-x-4">
           <Link
             href={href}
             className="text-sm font-semibold hover:text-slate-400"
@@ -74,12 +70,13 @@ const NavLink = ({ trigger, href, content }: Props) => {
           </CollapsibleTrigger>
         </div>
         {content.map((link, i) => (
-          <CollapsibleContent key={i} className="space-y-2">
-            <div className="rounded-md border px-4 py-1 text-sm">
-              <Link className="hover:underline" href={href}>
-                {link}
-              </Link>
-            </div>
+          <CollapsibleContent
+            key={i}
+            className="space-y-2 rounded-md border px-4 py-1 text-sm"
+          >
+            <Link className="hover:underline" href={href}>
+              {link}
+            </Link>
           </CollapsibleContent>
         ))}
       </Collapsible>
