@@ -105,7 +105,9 @@ const Navbar = () => {
           {sessionBypass ? (
             <Link href="/dashboard">Dashboard</Link>
           ) : (
-            <Button onClick={() => setSessionBypass(true)}>BypassLogin</Button>
+            <Button size="sm" onClick={() => setSessionBypass(true)}>
+              BypassLogin
+            </Button>
           )}
         </CollapsibleContent>
 
